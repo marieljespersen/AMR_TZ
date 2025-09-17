@@ -1,0 +1,44 @@
+#!/bin/sh
+### Note: No commands may be executed until after the #PBS lines
+### Account information
+#PBS -W group_list=cge -A cge
+###Submitting multiple jobs
+#PBS -t 4-143%20
+### Job name (comment out the next line to get the name of the script used as the job name)
+#PBS -N AMR_trees
+### Output files (comment out the next 2 lines to get the job name used instead)
+#PBS -e log/AMR_tree.err
+#PBS -o log/AMR_tree.log
+### Only send mail when job is aborted or terminates abnormally
+#PBS -m n
+### Number of nodes
+#PBS -l nodes=1:ppn=1
+### Memory
+#PBS -l mem=9gb
+### Requesting time - format is <days>:<hours>:<minutes>:<seconds>
+#PBS -l walltime=3:00:00
+
+cd $PBS_O_WORKDIR
+
+
+# Ensure necessary directories exist
+mkdir -p gene_aln
+mkdir -p output_trees
+mkdir -p log
+
+# get genename
+gene=$(head -n ${PBS_ARRAYID} gene_clusters.txt | tail -n 1)
+
+
+# load necessary modules if run on C2 
+module load mafft/7.453 trimal/1.4.1 iqtree/1.6.8
+
+# aligning sequences
+mafft --auto 4_cluster_results/$gene/$gene.target_sequence_only_fasta > gene_aln/$gene.aln
+
+# converting alignments to phylip format 
+trimal -in gene_aln/$gene.aln -phylip -out gene_aln/$gene.aln.phy
+
+# run iqtreee with auto model selection
+iqtree -s gene_aln/$gene.aln.phy -m TEST -nt AUTO -pre output_trees/$gene
+
