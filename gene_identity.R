@@ -1,4 +1,6 @@
+## Script for plotting gene identity across populations ##
 
+# load libraries
 library(stringr)
 library(ggplot2)
 library(dplyr)

@@ -1,13 +1,14 @@
 ---
-title: "AMR genes in Tanania humans"
+title: "AMR genes in Tananian hominid populations"
 output: html_notebook
 ---
-# AMR genes in Tanania humans
+# AMR genes in Tananian hominid populations
 
 ### Content
 
--   
--   
+-   Plots number of gene variants vs number of samples the gene is found in
+-   Identifies genes found in at least 10 samples
+-   Plots number of variants vs number of samples per population
 
 ### load libraries and set working dir
 

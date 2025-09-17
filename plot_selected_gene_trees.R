@@ -1,3 +1,7 @@
+## visualizations of gene trees, highlighting host-specific clustering. ##
+
+# load libraries 
+
 library(treeio)
 library(ggplot2)
 library(ggtree)
