@@ -38,7 +38,7 @@ BiocManager::install("ggtree")
 
 ## 🚀 Usage
 
-In each script the working directory must be set in the top of the script. This directory should contain the "1_hits_all.tsv" from running flankophile and the treefiles created from create_trees.pbs
+In each script the working directory must be set in the top of the script. This directory should contain the "1_hits_all.tsv" from running flankophile and the treefiles created from `create_trees.pbs`
 
 ## 🌍 Project Context
 
